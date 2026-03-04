@@ -1,6 +1,6 @@
 .scrollContainer {
     width: 100%;
-    overflow-x: auto;
+    overflow: visible;
 }
 
 .row {
@@ -13,6 +13,7 @@
     background-color: #fff;
     border-top: 1px solid #e7e8eb;
     border-bottom: 1px solid #e7e8eb;
+    overflow: visible;
 }
 
 .content {
