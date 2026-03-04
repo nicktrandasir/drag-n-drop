@@ -4,5 +4,4 @@ export interface UserInfo {
     avatar?: string;
     position?: string;
     department?: string;
-    email?: string;
 }

@@ -2,11 +2,11 @@ import type { DayCell } from "@/shared/types/day-cell";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 import type {FC} from "react";
+import {BlueCell, GrayCell, GreenCell, StripedCell, WhiteCell, YellowCell} from "@/components/cells";
 import styles from './dragable-day-cell.module.css';
 
 type DraggableDayCellProps = {
     day: DayCell;
-    index: number;
 };
 
 export const DraggableDayCell: FC<DraggableDayCellProps> = ({day}) => {
@@ -27,11 +27,23 @@ export const DraggableDayCell: FC<DraggableDayCellProps> = ({day}) => {
         cursor: isDragging ? 'grabbing' : 'grab',
     };
 
-    const getBgClass = () => {
-        if (day.type === 'vacation') return styles.bgVacation;
-        if (day.type === 'dayoff') return styles.bgDayoff;
-        if (day.value?.includes(':')) return styles.bgTime;
-        return styles.bgWork;
+    const renderCellByVariant = () => {
+        switch (day.variant) {
+            case 'blue':
+                return <BlueCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+            case 'green':
+                return <GreenCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+            case 'yellow':
+                return <YellowCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+            case 'gray':
+                return <GrayCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+            case 'white':
+                return <WhiteCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+            case 'striped':
+                return <StripedCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+            default:
+                return <WhiteCell value={day.value} secondaryValue={day.secondaryValue} badge={day.badge} />;
+        }
     };
 
     return (
@@ -40,10 +52,9 @@ export const DraggableDayCell: FC<DraggableDayCellProps> = ({day}) => {
             style={style}
             {...attributes}
             {...listeners}
-            className={`${styles.cell} ${isDragging ? styles.bgDragging : getBgClass()}`}
+            className={`${styles.cellShell} ${isDragging ? styles.dragging : ''}`}
         >
-            <div className={styles.date}>{day.date}</div>
-            <div className={styles.value}>{day.value || '—'}</div>
+            {renderCellByVariant()}
         </div>
     );
 };

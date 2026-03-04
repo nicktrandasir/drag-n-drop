@@ -1,0 +1,39 @@
+.cell {
+    box-sizing: border-box;
+    background-color: #eaf2ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 144px;
+    height: 72px;
+    padding: 0.4rem 0.45rem;
+    border-radius: 8px;
+}
+
+.value {
+    font-size: 0.72rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.secondary {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    margin-top: 0.15rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 0.2rem;
+    padding: 0.05rem 0.25rem;
+    border-radius: 0.3rem;
+    background: #f3f4f6;
+    color: #4b5563;
+    font-size: 0.58rem;
+}
+
+.icon {
+    font-size: 0.56rem;
+}

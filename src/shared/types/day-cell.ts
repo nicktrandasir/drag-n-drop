@@ -1,5 +1,7 @@
 export interface DayCell {
     date: string;
     value: string;
-    type: 'work' | 'vacation' | 'dayoff';
+    secondaryValue?: string;
+    badge?: string;
+    variant: 'blue' | 'green' | 'yellow' | 'gray' | 'white' | 'striped';
 }

@@ -38,18 +38,20 @@ export const DragAndDropRow: FC<DragAndDropRowProps> = ({ user, days, onDaysChan
         >
             <div className={styles.scrollContainer}>
                 <div className={styles.row}>
-                    <UserCell user={user} />
+                    <div className={styles.content}>
+                        <UserCell user={user} />
 
-                    <SortableContext
-                        items={days.map(day => day.date)}
-                        strategy={horizontalListSortingStrategy}
-                    >
-                        <div className={styles.daysList}>
-                            {days.map((day, index) => (
-                                <DraggableDayCell key={day.date} day={day} index={index} />
-                            ))}
-                        </div>
-                    </SortableContext>
+                        <SortableContext
+                            items={days.map(day => day.date)}
+                            strategy={horizontalListSortingStrategy}
+                        >
+                            <div className={styles.daysList}>
+                                {days.map((day) => (
+                                    <DraggableDayCell key={day.date} day={day} />
+                                ))}
+                            </div>
+                        </SortableContext>
+                    </div>
                 </div>
             </div>
         </DndContext>
