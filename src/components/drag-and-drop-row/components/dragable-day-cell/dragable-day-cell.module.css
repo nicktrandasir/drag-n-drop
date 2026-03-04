@@ -1,0 +1,48 @@
+.cell {
+    flex-shrink: 0;
+    min-width: 82px;
+    padding: 0.5rem 0.55rem;
+    border-right: 1px solid #e5e7eb;
+    transition: background-color 0.15s ease;
+    position: relative;
+}
+
+.cell:last-child {
+    border-right: none;
+}
+
+.cell:hover {
+    background-color: #d1d5db;
+}
+
+.bgWork {
+    background-color: #f0f4ff;
+}
+
+.bgVacation {
+    background-color: #86efac;
+}
+
+.bgDayoff {
+    background-color: #fca5a5;
+}
+
+.bgTime {
+    background-color: #93c5fd;
+}
+
+.bgDragging {
+    background-color: #d1d5db;
+}
+
+.date {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    margin-bottom: 0.15rem;
+}
+
+.value {
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+

@@ -1,30 +1,21 @@
-import React, {type FC} from 'react';
-import {DndContext, closestCenter, type DragEndEvent} from '@dnd-kit/core';
-import { SortableContext, useSortable, arrayMove, horizontalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import type {UserInfo} from "../../shared/types/user-info.ts";
-import type {DayCell} from "../../shared/types/day-cell.ts";
+import {type FC} from 'react';
+import {closestCenter, DndContext, type DragEndEvent} from '@dnd-kit/core';
+import {arrayMove, horizontalListSortingStrategy, SortableContext} from '@dnd-kit/sortable';
+import type {UserInfo} from "@shared/types/user-info.ts";
+import type {DayCell} from "@shared/types/day-cell.ts";
 import {UserCell} from "./components/user-cell";
 import {DraggableDayCell} from "./components/dragable-day-cell";
+import styles from './drag-n-drop.module.css';
 
-// Типы для данных
-
-
-
-
-
-
-interface Props {
+type DragAndDropRowProps = {
     user: UserInfo;
-    days: DayCell[]; // должно быть 7 элементов (со 2 по 8 день)
+    days: DayCell[];
     onDaysChange: (newDays: DayCell[]) => void;
 }
 
-// Основной компонент строки
-export const UserScheduleRow: React.FC<Props> = ({ user, days, onDaysChange }) => {
-    // Проверяем, что days содержит 7 элементов
+export const DragAndDropRow: FC<DragAndDropRowProps> = ({ user, days, onDaysChange }) => {
     if (days.length !== 7) {
-        console.error('UserScheduleRow: days must contain exactly 7 items');
+        console.error('DragAndDropRow: days must contain exactly 7 items');
         return null;
     }
 
@@ -45,21 +36,21 @@ export const UserScheduleRow: React.FC<Props> = ({ user, days, onDaysChange }) =
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
         >
-            <div className="flex border rounded-lg overflow-hidden shadow-sm">
-                {/* Статичная ячейка пользователя */}
-                <UserCell user={user} />
+            <div className={styles.scrollContainer}>
+                <div className={styles.row}>
+                    <UserCell user={user} />
 
-                {/* Sortable контейнер для дней */}
-                <SortableContext
-                    items={days.map(day => day.date)}
-                    strategy={horizontalListSortingStrategy}
-                >
-                    <div className="flex flex-1">
-                        {days.map((day, index) => (
-                            <DraggableDayCell key={day.date} day={day} index={index} />
-                        ))}
-                    </div>
-                </SortableContext>
+                    <SortableContext
+                        items={days.map(day => day.date)}
+                        strategy={horizontalListSortingStrategy}
+                    >
+                        <div className={styles.daysList}>
+                            {days.map((day, index) => (
+                                <DraggableDayCell key={day.date} day={day} index={index} />
+                            ))}
+                        </div>
+                    </SortableContext>
+                </div>
             </div>
         </DndContext>
     );
