@@ -1,6 +1,5 @@
 import type { DayCell } from "@/shared/types/day-cell";
 import {useSortable} from "@dnd-kit/sortable";
-import {CSS} from "@dnd-kit/utilities";
 import type {FC} from "react";
 import {BlueCell, GrayCell, GreenCell, StripedCell, WhiteCell, YellowCell} from "@/components/cells";
 import styles from './dragable-day-cell.module.css';
@@ -15,14 +14,14 @@ export const DraggableDayCell: FC<DraggableDayCellProps> = ({day}) => {
         listeners,
         setNodeRef,
         transform,
-        transition,
         isDragging
     } = useSortable({id: day.date});
 
-    const baseTransform = CSS.Transform.toString(transform);
+    const x = transform?.x ?? 0;
+    const y = transform?.y ?? 0;
     const style = {
-        transform: isDragging ? `${baseTransform ?? ''} rotate(-5deg)` : undefined,
-        transition: isDragging ? transition : undefined,
+        transform: isDragging ? `translate3d(${x}px, ${y}px, 0) rotate(-5deg)` : undefined,
+        transition: undefined,
         zIndex: isDragging ? 10 : undefined,
         cursor: isDragging ? 'grabbing' : 'grab',
     };
