@@ -1,0 +1,16 @@
+.scrollContainer {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    min-width: max-content;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+.daysList {
+    display: flex;
+}
