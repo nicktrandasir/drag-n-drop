@@ -11,7 +11,6 @@
     min-width: max-content;
     height: 82px;
     background-color: #fff;
-    border-top: 1px solid #e7e8eb;
     border-bottom: 1px solid #e7e8eb;
     overflow: visible;
 }
@@ -36,32 +35,9 @@
 }
 
 .daysList {
-    position: relative;
     display: flex;
     align-items: center;
     flex: 1 1 auto;
     height: 80px;
-    padding: 0 5px;
 }
 
-.daysList::before {
-    content: "";
-    position: absolute;
-    left: 5px;
-    right: 5px;
-    top: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        90deg,
-        transparent 0 149px,
-        #e7e8eb 149px 150px,
-        transparent 150px 155px
-    );
-    pointer-events: none;
-    z-index: 0;
-}
-
-.daysList > * {
-    position: relative;
-    z-index: 1;
-}
