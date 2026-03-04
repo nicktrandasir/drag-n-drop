@@ -9,6 +9,10 @@
     position: relative;
 }
 
+.cellShell:not(:last-child) {
+    margin-right: 11px;
+}
+
 .cellShell:hover > div {
     filter: brightness(0.9);
 }

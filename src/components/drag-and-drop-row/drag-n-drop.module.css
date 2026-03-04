@@ -17,17 +17,51 @@
 }
 
 .content {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
     height: 80px;
 }
 
+.content::before {
+    content: "";
+    position: absolute;
+    left: 319px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #e7e8eb;
+    z-index: 2;
+}
+
 .daysList {
+    position: relative;
     display: flex;
     align-items: center;
     flex: 1 1 auto;
-    height: 72px;
-    gap: 5px;
+    height: 80px;
     padding: 0 5px;
+}
+
+.daysList::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0 149px,
+        #e7e8eb 149px 150px,
+        transparent 150px 155px
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.daysList > * {
+    position: relative;
+    z-index: 1;
 }
